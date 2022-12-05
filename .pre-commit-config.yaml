@@ -6,7 +6,7 @@
 #   pre-commit autoupdate --freeze
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: 3298ddab3c13dd77d6ce1fc0baf97691430d84b0 # frozen: v4.3.0
+    rev: f71fa2c1f9cf5cb705f73dffe4b21f7c61470ba9 # frozen: v4.4.0
     hooks:
       - id: fix-byte-order-marker
       - id: check-case-conflict
@@ -20,7 +20,7 @@ repos:
       - id: trailing-whitespace
       - id: mixed-line-ending
   - repo: https://github.com/psf/black
-    rev: 2018e667a6a36ee3fbfa8041cd36512f92f60d49 # frozen: 22.8.0
+    rev: 27d20144a7517594e24a1649451177b2a11284be # frozen: 22.10.0
     hooks:
       - id: black
   - repo: https://github.com/asottile/blacken-docs
@@ -36,6 +36,6 @@ repos:
           - prettier@2.1.2
           - "@prettier/plugin-xml@0.12.0"
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: ''  # Use the sha / tag you want to point at
+    rev: "5e2d583d78cae3271024a78e9f349896bbcca877" # 0.0.158
     hooks:
       - id: ruff
