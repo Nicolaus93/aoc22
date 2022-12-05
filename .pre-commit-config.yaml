@@ -39,3 +39,4 @@ repos:
     rev: "5e2d583d78cae3271024a78e9f349896bbcca877" # 0.0.158
     hooks:
       - id: ruff
+        args: ["--config", "pyproject.toml", "--fix"]
