@@ -6,6 +6,10 @@ from aocd.models import Puzzle
 import utils
 
 
+PART1 = 0
+PART2 = dict()
+
+
 @dataclass
 class Dir:
     name: str
@@ -31,7 +35,6 @@ class File:
     size: int
 
 
-@utils.timeit
 def build_tree(input_f=None):
     if not input_f:
         puzzle = Puzzle(year=2022, day=7)
@@ -66,10 +69,6 @@ def build_tree(input_f=None):
     return root
 
 
-PART1 = 0
-PART2 = dict()
-
-
 def compute_size(cur_dir: Dir):
     global PART1, PART2
     for child_dir in cur_dir.dirs:
@@ -92,17 +91,27 @@ def compute_size(cur_dir: Dir):
     return cur_dir.size
 
 
-if __name__ == "__main__":
+@utils.timeit
+def main(debug=False):
+    global PART1, PART2
+
     # test_puzzle
-    print("--------------TEST--------------")
-    # temp = build_tree("test.txt")
-    temp = build_tree()
-    print(temp)
-    tot_size = compute_size(temp)
+    print("--------------PART 1--------------")
+    temp = build_tree("test.txt")
+    compute_size(temp)
+    # temp = build_tree()
+    if debug:
+        print(temp)
     print("PART1:", PART1)
+
+    print("--------------PART 2--------------")
     needed_space = 30000000
     sorted_by_size = sorted([v for v in PART2.values()])
     for v in sorted_by_size:
         if 70000000 - PART2["/"] + v > needed_space:
             print("PART2:", v)
             break
+
+
+if __name__ == "__main__":
+    main()
