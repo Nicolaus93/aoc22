@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import time
 from dataclasses import dataclass, field
 from pprint import pprint as pp
 from aocd.models import Puzzle
@@ -98,7 +98,7 @@ def get_rocks(input_f=None):
 
 
 @utils.timeit
-def solve(input_f=None, debug=False):
+def solve(input_f=None, debug=False, visualize=0):
     map2d = get_rocks(input_f)
 
     max_row = max(map2d.rocks, key=lambda p: p.x).x
@@ -107,6 +107,10 @@ def solve(input_f=None, debug=False):
         if stopped_sand.x > max_row:
             break
         map2d.sand.add(stopped_sand)
+        if visualize:
+            time.sleep(visualize)
+            print("\033c", end="")
+            print(map2d)
 
     if debug:
         pp(map2d)
@@ -137,7 +141,7 @@ def part_2(input_f=None, debug=False):
 if __name__ == "__main__":
     # test_puzzle
     print("--------------TEST--------------")
-    res = solve("test.txt")
+    res = solve("test.txt", visualize=True)
     print("test answer: ", res)
 
     # real puzzle
